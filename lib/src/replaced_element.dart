@@ -146,7 +146,7 @@ class ImageContentElement extends ReplacedElement {
             (instance) {
               instance
                 ..onTap =
-                    () => context.parser.onImageTap?.call(src, node.attributes);
+                    () => context.parser.onImageTap?.call(src, {"alt": alt});
             },
           ),
         },
