@@ -12,7 +12,7 @@ import 'package:flutter_html/style.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as htmlparser;
 
-typedef OnTap = void Function(String url);
+typedef OnTap = void Function(String url, Map<String, String>);
 typedef CustomRender = Widget Function(
   RenderContext context,
   Widget parsedChild,
@@ -69,7 +69,7 @@ class HtmlParser extends StatelessWidget {
     // scaling is used, but relies on https://github.com/flutter/flutter/pull/59711
     // to wrap everything when larger accessibility fonts are used.
     return StyledText(
-      textSpan: parsedTree, 
+      textSpan: parsedTree,
       style: cleanedTree.style,
       textScaleFactor: MediaQuery.of(context).textScaleFactor,
     );
@@ -311,7 +311,9 @@ class HtmlParser extends StatelessWidget {
                 MultipleTapGestureRecognizer>(
               () => MultipleTapGestureRecognizer(),
               (instance) {
-                instance..onTap = () => onLinkTap?.call(tree.href);
+                instance
+                  ..onTap =
+                      () => onLinkTap?.call(tree.href, tree.element.attributes);
               },
             ),
           },
