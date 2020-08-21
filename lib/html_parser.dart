@@ -12,7 +12,7 @@ import 'package:flutter_html/style.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as htmlparser;
 
-typedef OnTap = void Function(String url, Map<String, String>);
+typedef OnTap = void Function(String url, Map<String, dynamic>);
 typedef CustomRender = Widget Function(
   RenderContext context,
   Widget parsedChild,
